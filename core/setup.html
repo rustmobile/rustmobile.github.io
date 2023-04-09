@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Setup - Rust on Mobile</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Building a Rust library and use it across platforms">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Custom Elements -->
+        <script type="text/javascript" src="https://static.ghamza.dev/js/code-line-highlight.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Fira+Code" rel="stylesheet">
+        <style>
+            code {
+                font-family: 'Fira Code', sans-serif !important;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../architecture.html"><strong aria-hidden="true">2.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../core/setup.html" class="active"><strong aria-hidden="true">3.</strong> Setup</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust on Mobile</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/ghamza-rust/ghamza-rust.github.io" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="project-setup"><a class="header" href="#project-setup">Project Setup</a></h1>
+<h2 id="cargo-workspace"><a class="header" href="#cargo-workspace">Cargo Workspace</a></h2>
+<p>This section talks about the initial project setup and structure.</p>
+<p>We will create a new rust project and make it a workspace to cross-reference
+multiple crates inside our project.</p>
+<pre><code class="language-bash">cargo new exa-library
+</code></pre>
+<p>Change the directory to <code>exa-library</code> and delete the <code>src</code> folder</p>
+<p>Finally, replace the content of <code>Cargo.toml</code> with our workspace configuration</p>
+<pre><code class="language-toml">[workspace]
+members = []
+</code></pre>
+<h2 id="core-crate"><a class="header" href="#core-crate">Core Crate</a></h2>
+<p>We are going to add crates to our workspace as we go. The first crate is going
+to be our core crate.</p>
+<pre><code class="language-bash">cargo new exa_core --lib --vcs none
+</code></pre>
+<blockquote>
+<p>We do not need a version control system on the new crates
+since it already created one when we ran <code>cargo new exa-library</code>.</p>
+</blockquote>
+<p>Then add <code>exa_core</code> to the root <code>Cargo.toml</code>.</p>
+<pre><code class="language-toml [hl 3]">[workspace]
+members = [
+    &quot;exa_core&quot;
+]
+</code></pre>
+<p>The result of this part should have this folder structure:</p>
+<p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIxMzdweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjEwOHB4O2hlaWdodDoxMzdweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMDggMTM3IiB3aWR0aD0iMTA4cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2NSIgeD0iMTYiIHk9IjE3LjEzODciPmV4YS1saWJyYXJ5PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU3IiB4PSIyNiIgeT0iMzEuMTA3NCI+LmdpdGlnbm9yZTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2NCIgeD0iMjYiIHk9IjQ1LjA3NjIiPkNhcmdvLmxvY2s8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjI2IiB5PSI1OS4wNDQ5Ij5DYXJnby50b21sPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU2IiB4PSIyNiIgeT0iNzMuMDEzNyI+ZXhhX2NvcmU8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjM2IiB5PSI4Ni45ODI0Ij5DYXJnby50b21sPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE5IiB4PSIzNiIgeT0iMTAwLjk1MTIiPnNyYzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOSIgeD0iNDYiIHk9IjExNC45MTk5Ij5saWIucnM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNDAiIHg9IjI2IiB5PSIxMjguODg4NyI+dGFyZ2V0LzwvdGV4dD48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjIiIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgd2lkdGg9IjIiIHg9IjkiIHk9IjExLjk4NDQiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjEwIiB5MT0iMTQuOTg0NCIgeTI9IjI2Ljk1MzEiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjE4IiB5MT0iMjYuOTUzMSIgeTI9IjI2Ljk1MzEiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjEwIiB5MT0iMTQuOTg0NCIgeTI9IjQwLjkyMTkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjE4IiB5MT0iNDAuOTIxOSIgeTI9IjQwLjkyMTkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjEwIiB5MT0iMTQuOTg0NCIgeTI9IjU0Ljg5MDYiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjE4IiB5MT0iNTQuODkwNiIgeTI9IjU0Ljg5MDYiLz48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjIiIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgd2lkdGg9IjIiIHg9IjE5IiB5PSI2Ny44NTk0Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSI2OC44NTk0Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxOCIgeTE9IjY4Ljg1OTQiIHkyPSI2OC44NTk0Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjAiIHgyPSIyMCIgeTE9IjcwLjg1OTQiIHkyPSI4Mi44MjgxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjAiIHgyPSIyOCIgeTE9IjgyLjgyODEiIHkyPSI4Mi44MjgxIi8+PHJlY3QgZmlsbD0ibm9uZSIgaGVpZ2h0PSIyIiBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHdpZHRoPSIyIiB4PSIyOSIgeT0iOTUuNzk2OSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjIwIiB4Mj0iMjAiIHkxPSI3MC44NTk0IiB5Mj0iOTYuNzk2OSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjIwIiB4Mj0iMjgiIHkxPSI5Ni43OTY5IiB5Mj0iOTYuNzk2OSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMwIiB4Mj0iMzAiIHkxPSI5OC43OTY5IiB5Mj0iMTEwLjc2NTYiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMCIgeDI9IjM4IiB5MT0iMTEwLjc2NTYiIHkyPSIxMTAuNzY1NiIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTAiIHkxPSIxNC45ODQ0IiB5Mj0iMTI0LjczNDQiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjE4IiB5MT0iMTI0LjczNDQiIHkyPSIxMjQuNzM0NCIvPjwhLS1TUkM9W1RQMTFKbThuNDhObF9ITHBYMTFNR0tDQzlvQVlYaDA5U082aEFLamo2aGVwUDNneElXWl90UkEwWHJOZHFsSHpSLVBERW1nWU1PQnNlV3VBT1hxTXpONmczZldsdFZMa3BQaHRGc2ZERWYxTzl5dVlpTWNJaU1QQllRVHktcFNIQWRvSm5BM3RsM2RocEZ2amstQjAtSV96bVplR2pxeXVERUZZY3dzSGNyZS1nZ0NRNlRwS1Z3M2NOZ0NpcW5iS1hlQ1pYNXhJbC10VjlPRXI0VHJoQk42Qno4Y0dLeDVwdGUydW1oSEx3c0stV3EwYnZtT3NCV1l4VEljbmtRc2NrakJtTGtCOUR1SkpoUkw4c3YxRGhZOUNpNzlDTTFXS0RMc2JQbkV5YWNHeGFqZXlrRXktRWU3Q1NEbTlMZ2J3Q1gtd3oxOVJTemV1ajRET0Jmd3gzc2djcVBSUW5ZMjNRYW1uV0ZVSFBUeTBdLS0+PC9nPjwvc3ZnPg==" alt="" /></p>
+<blockquote>
+<p><code>Cargo.lock</code> and <code>target</code> might be missing if the project wasn't built yet.</p>
+</blockquote>
+<h2 id="mobile-crate"><a class="header" href="#mobile-crate">Mobile Crate</a></h2>
+<p>The mobile crate is going to hold the mobile-specific bindings and dependencies.
+Writing the bindings in a separate create will make our library modular,
+so in the future, if we want to add WASM support, we create a new crate
+and write the bindings there without touching the core crate.</p>
+<p>Create the new crate:</p>
+<pre><code class="language-bash">cargo new glue/mobile --lib --vcs none
+</code></pre>
+<p>Add it to our workspace:</p>
+<pre><code class="language-toml [hl 4]">[workspace]
+members = [
+    &quot;exa_core&quot;,
+    &quot;glue/mobile&quot;
+]
+</code></pre>
+<p>Final project structure:</p>
+<p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIyMDdweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjExOHB4O2hlaWdodDoyMDdweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMTggMjA3IiB3aWR0aD0iMTE4cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2NSIgeD0iMTYiIHk9IjE3LjEzODciPmV4YS1saWJyYXJ5PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU3IiB4PSIyNiIgeT0iMzEuMTA3NCI+LmdpdGlnbm9yZTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2NCIgeD0iMjYiIHk9IjQ1LjA3NjIiPkNhcmdvLmxvY2s8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjI2IiB5PSI1OS4wNDQ5Ij5DYXJnby50b21sPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU2IiB4PSIyNiIgeT0iNzMuMDEzNyI+ZXhhX2NvcmU8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjM2IiB5PSI4Ni45ODI0Ij5DYXJnby50b21sPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE5IiB4PSIzNiIgeT0iMTAwLjk1MTIiPnNyYzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOSIgeD0iNDYiIHk9IjExNC45MTk5Ij5saWIucnM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjI2IiB5PSIxMjguODg4NyI+Z2x1ZTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0MSIgeD0iMzYiIHk9IjE0Mi44NTc0Ij5tb2JpbGU8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjQ2IiB5PSIxNTYuODI2MiI+Q2FyZ28udG9tbDwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxOSIgeD0iNDYiIHk9IjE3MC43OTQ5Ij5zcmM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjkiIHg9IjU2IiB5PSIxODQuNzYzNyI+bGliLnJzPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjQwIiB4PSIyNiIgeT0iMTk4LjczMjQiPnRhcmdldC88L3RleHQ+PHJlY3QgZmlsbD0ibm9uZSIgaGVpZ2h0PSIyIiBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHdpZHRoPSIyIiB4PSI5IiB5PSIxMS45ODQ0Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSIyNi45NTMxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxOCIgeTE9IjI2Ljk1MzEiIHkyPSIyNi45NTMxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSI0MC45MjE5Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxOCIgeTE9IjQwLjkyMTkiIHkyPSI0MC45MjE5Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSI1NC44OTA2Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxOCIgeTE9IjU0Ljg5MDYiIHkyPSI1NC44OTA2Ii8+PHJlY3QgZmlsbD0ibm9uZSIgaGVpZ2h0PSIyIiBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHdpZHRoPSIyIiB4PSIxOSIgeT0iNjcuODU5NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTAiIHkxPSIxNC45ODQ0IiB5Mj0iNjguODU5NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTgiIHkxPSI2OC44NTk0IiB5Mj0iNjguODU5NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjIwIiB4Mj0iMjAiIHkxPSI3MC44NTk0IiB5Mj0iODIuODI4MSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjIwIiB4Mj0iMjgiIHkxPSI4Mi44MjgxIiB5Mj0iODIuODI4MSIvPjxyZWN0IGZpbGw9Im5vbmUiIGhlaWdodD0iMiIgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB3aWR0aD0iMiIgeD0iMjkiIHk9Ijk1Ljc5NjkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyMCIgeDI9IjIwIiB5MT0iNzAuODU5NCIgeTI9Ijk2Ljc5NjkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyMCIgeDI9IjI4IiB5MT0iOTYuNzk2OSIgeTI9Ijk2Ljc5NjkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMCIgeDI9IjMwIiB5MT0iOTguNzk2OSIgeTI9IjExMC43NjU2Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzAiIHgyPSIzOCIgeTE9IjExMC43NjU2IiB5Mj0iMTEwLjc2NTYiLz48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjIiIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgd2lkdGg9IjIiIHg9IjE5IiB5PSIxMjMuNzM0NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTAiIHkxPSIxNC45ODQ0IiB5Mj0iMTI0LjczNDQiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjE4IiB5MT0iMTI0LjczNDQiIHkyPSIxMjQuNzM0NCIvPjxyZWN0IGZpbGw9Im5vbmUiIGhlaWdodD0iMiIgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB3aWR0aD0iMiIgeD0iMjkiIHk9IjEzNy43MDMxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjAiIHgyPSIyMCIgeTE9IjEyNi43MzQ0IiB5Mj0iMTM4LjcwMzEiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyMCIgeDI9IjI4IiB5MT0iMTM4LjcwMzEiIHkyPSIxMzguNzAzMSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMwIiB4Mj0iMzAiIHkxPSIxNDAuNzAzMSIgeTI9IjE1Mi42NzE5Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzAiIHgyPSIzOCIgeTE9IjE1Mi42NzE5IiB5Mj0iMTUyLjY3MTkiLz48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjIiIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgd2lkdGg9IjIiIHg9IjM5IiB5PSIxNjUuNjQwNiIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMwIiB4Mj0iMzAiIHkxPSIxNDAuNzAzMSIgeTI9IjE2Ni42NDA2Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzAiIHgyPSIzOCIgeTE9IjE2Ni42NDA2IiB5Mj0iMTY2LjY0MDYiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSI0MCIgeDI9IjQwIiB5MT0iMTY4LjY0MDYiIHkyPSIxODAuNjA5NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjQwIiB4Mj0iNDgiIHkxPSIxODAuNjA5NCIgeTI9IjE4MC42MDk0Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSIxOTQuNTc4MSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTgiIHkxPSIxOTQuNTc4MSIgeTI9IjE5NC41NzgxIi8+PCEtLVNSQz1bVlA1RlJ5OG0zQ05sLUhHLVdYM1RPMUVRRUE0bmpXYkgyUXNLd3ZJTUI4ZjhSUEl1UjBabnRIVkFkcUQ3dnFpS192eHpka0lIUC1kT0l5allCbzNLVmI0em4tZzAtZjVUUXA4ZHRVeFFoS1c3OGN0T1EySWR3Y0dpZFFSOEtody1KUFdBTW9WMXczRWx4cGdubmg0QnpZeF9xcC1wM2VKcWFWRHJFc3RCc3JPNVBTUWd2ZE5fSEJiZ2NsOVMxNHNYbVk2cXVoa2dWSDA3Q0xBdWdXdVp2Yk9ZZl80Q2ppZnZHbVl6ZzdfVlZ1VzZjTUJQUXdNdUhsZjZvQWRPWEZKMGZiMWpxTmdScHkxSndOODVBLUZQY1FwYUNEbU1LeGNMeTU3WUtKVTR1dy1yWURrR0oydkRjRTNNRUM5MjhPbGZDWnc5dTlxdXNIMU51aTVaenphbTlDZzVKQjJDbk9sd2FnTmJDOWhKb2cwVUdoZnV4Snc5Y0tIVElYc0M1OGVuMUdFdDJvcHYxRzAwXS0tPjwvZz48L3N2Zz4=" alt="" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../architecture.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../architecture.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'G-M9GYS9Z1XC', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
