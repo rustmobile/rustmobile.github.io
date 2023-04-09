@@ -22,6 +22,7 @@ and our problem will be only about writing glue code.
 ```plantuml,format=svg
 @startuml
 !theme sketchy-outline
+skinparam backgroundColor #FFFFFF
 
 !$android = "Android\nKotlin/Java"
 !$ios = "iOS\nSwift/Objective-C"
@@ -52,6 +53,7 @@ we only have to worry about writing a glue code to support web.
 ```plantuml,format=svg
 @startuml
 !theme sketchy-outline
+skinparam backgroundColor #FFFFFF
 
 !$android = "Android\nKotlin/Java"
 !$ios = "iOS\nSwift/Objective-C"

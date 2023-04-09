@@ -11,7 +11,7 @@ Kotlin and Swift. You don't need to be an expert in any of them.
 ## How to read this book?
 
 The book is written to be read from start to finish. You should follow
-along:writing, compiling, and running the tutorial's code yourself.
+along: writing, compiling, and running the tutorial's code yourself.
 
 We will build a rust library in this series and port it to different platforms.
 We are calling it `libexa` (which stands for Example Library 🫣).
