@@ -1,0 +1,445 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Uniffi Setup - Rust on Mobile</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Building a Rust library and use it across platforms">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Custom Elements -->
+        <script type="text/javascript" src="https://static.ghamza.dev/js/code-line-highlight.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Fira+Code" rel="stylesheet">
+        <style>
+            code {
+                font-family: 'Fira Code', sans-serif !important;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../architecture.html"><strong aria-hidden="true">2.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="../core/setup.html"><strong aria-hidden="true">3.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../core/uniffi-setup.html" class="active"><strong aria-hidden="true">4.</strong> Uniffi Setup</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Rust on Mobile</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/ghamza-rust/ghamza-rust.github.io" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="uniffi-setup"><a class="header" href="#uniffi-setup">Uniffi Setup</a></h1>
+<p>We are going to use <code>uniffi</code> to generate Swift and Kotlin bindings. Then,
+we will add a logger initializer and see the generating bindings.</p>
+<p>These are only language bindings. Building and linking to the native library
+will come later.</p>
+<p>With uniffi, we can write interface definitions inside the <code>.udl</code> file
+(uniffi definition language), and uniffi can grab the <code>.udl</code> file and generate
+language bindings depending on the interface definitions we provide.</p>
+<h2 id="lib-setup"><a class="header" href="#lib-setup">Lib Setup</a></h2>
+<p>Let us start by adding library configuration inside <code>glue/mobile/Cargo.toml</code>
+add the following:</p>
+<pre><code class="language-toml [hl 6-8]">[package]
+name = &quot;mobile&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[lib]
+name = &quot;exa&quot;
+crate-type = [&quot;staticlib&quot;, &quot;cdylib&quot;]
+
+[dependencies]
+</code></pre>
+<p>The <code>name</code> will be our generated library name. It has the form of <code>lib&lt;name&gt;</code>.
+We made the crate type <code>staticlib</code> to generate <code>lib&lt;name&gt;.a</code> files and use them
+for iOS targets, and <code>cdylib</code> are for generating <code>lib&lt;name&gt;.so</code> and use it for
+our Android targets.</p>
+<h2 id="adding-uniffi"><a class="header" href="#adding-uniffi">Adding Uniffi</a></h2>
+<p>We should add uniffi as a build, bin, and library dependency,
+but each has a different feature.</p>
+<blockquote>
+<p>TBH, I could not figure out how to have three different dependencies in
+<code>Cargo.toml</code>, so I combined the features needed for bin and lib dependencies u
+nder <code>[dependencies]</code></p>
+</blockquote>
+<p>Inside <code>glue/mobile/Cargo.toml</code></p>
+<pre><code class="language-toml [hl 10-14]">[package]
+name = &quot;mobile&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[lib]
+name = &quot;exa&quot;
+crate-type = [&quot;staticlib&quot;, &quot;cdylib&quot;]
+
+[dependencies]
+uniffi = { version = &quot;0.23.0&quot;, features = [&quot;cli&quot;] }
+
+[build-dependencies]
+uniffi = { version = &quot;0.23.0&quot;, features = [&quot;build&quot;] }
+</code></pre>
+<p>Let us start with generating the bindings function. Create in our mobile crate
+<code>main.rs</code> and add the generating function:</p>
+<pre><code class="language-rust">fn main() {
+    uniffi::uniffi_bindgen_main();
+}</code></pre>
+<p>Now to our library, remove all the content of <code>lib.rs</code> in our
+mobile crate and include the scaffold rust file generated by uniffi
+(not generated yet. We are going to do so in <code>build.rs</code>)</p>
+<pre><code class="language-rust">uniffi::include_scaffolding!(&quot;exa&quot;);</code></pre>
+<p>And finally, create a <code>build.rs</code> file inside the mobile crate but outside the src.</p>
+<pre><code class="language-rust">fn main() {
+    uniffi::generate_scaffolding(&quot;./src/exa.udl&quot;).unwrap();
+}</code></pre>
+<p>In <code>build.rs</code>, we want to generate a scaffolding from a file
+called <code>exa.udl</code> inside <code>src</code>.</p>
+<p>You might see errors if your editor builds on save since the file <code>exa.udl</code>
+still needs to be created. Let us create it in the mobile crate inside the <code>src</code></p>
+<pre><code class="language-cpp">namespace exa { };
+</code></pre>
+<p>Now the errors should be gone. And we can generate bindings, but wait,
+let us add a simple functionality and then generate the bindings
+to see if all is good.</p>
+<h2 id="adding-logger"><a class="header" href="#adding-logger">Adding Logger</a></h2>
+<p>On Android, we log using <code>logcat</code>. On iOS, we log to <code>stdout</code>, so for Android,
+we can use <code>android_logger</code>, and for iOS, we can use <code>simple_logger</code></p>
+<p>For better optimizations, we can have conditional dependencies,
+add <code>android_logger</code> if the target operating system is Android, else use <code>simple_logger</code></p>
+<pre><code class="language-toml [hl 11 12 15-19]">[package]
+name = &quot;mobile&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[lib]
+name = &quot;exa&quot;
+crate-type = [&quot;staticlib&quot;, &quot;cdylib&quot;]
+
+[dependencies]
+log = &quot;0.4.17&quot;
+log-panics = &quot;2.1.0&quot;
+uniffi = { version = &quot;0.23.0&quot;, features = [&quot;cli&quot;] }
+
+[target.'cfg(target_os=&quot;android&quot;)'.dependencies]
+android_logger = &quot;0.13.1&quot;
+
+[target.'cfg(not(target_os=&quot;android&quot;))'.dependencies]
+simple_logger = &quot;4.0.0&quot;
+
+[build-dependencies]
+uniffi = { version = &quot;0.23.0&quot;, features = [&quot;build&quot;] }
+</code></pre>
+<p>Now create <code>logger.rs</code> in <code>src</code> in our mobile crate.</p>
+<p>We want to use <code>android_logger to initialize the logger</code> if the target OS is
+Android. We can create a configuration block and check the <code>target_os</code></p>
+<pre><code class="language-rust">use log::{info, LevelFilter};
+
+pub fn init_logger() {
+    #[cfg(target_os = &quot;android&quot;)]
+    {
+        android_logger::init_once(
+            android_logger::Config::default()
+                .with_max_level(LevelFilter::Trace)
+                .with_tag(&quot;Exa&quot;),
+        );
+        info!(&quot;Logger initialized&quot;);
+    }
+
+    #[cfg(not(target_os = &quot;android&quot;))]
+    {
+        let logger = simple_logger::SimpleLogger::new()
+            .with_level(LevelFilter::Trace)
+            .with_colors(false)
+            .init();
+
+        match logger {
+            Ok(()) =&gt; info!(&quot;Logger initialized&quot;),
+            Err(_) =&gt; { },
+        };
+    }
+
+    log_panics::init();
+}</code></pre>
+<p>Now add that as a module inside <code>lib.rs</code></p>
+<pre><code class="language-rust [hl 1-3]">mod logger;
+
+use crate::logger::*;
+
+uniffi::include_scaffolding!(&quot;exa&quot;);</code></pre>
+<p>And finally, add the function signature to <code>exa.udl</code> so we can generate the bindings!</p>
+<pre><code class="language-cpp [hl 2]">namespace exa {
+    void init_logger();
+};
+</code></pre>
+<h2 id="generating-the-bindings"><a class="header" href="#generating-the-bindings">Generating the bindings</a></h2>
+<p>We want to execute the <code>main.rs</code> function inside the mobile
+crate to generate the bindings.</p>
+<p>To do so, open the terminal and change the directory to the root project
+(<code>exa-library</code>). From there, we run <code>cargo run</code> and pick the binary we want to run.</p>
+<pre><code class="language-bash">cargo run --bin mobile -- --help
+</code></pre>
+<p>You should be able to see the help message:</p>
+<pre><code class="language-text">Scaffolding and bindings generator for Rust
+
+USAGE:
+    mobile &lt;SUBCOMMAND&gt;
+
+OPTIONS:
+    -h, --help       Print help information
+    -V, --version    Print version information
+
+SUBCOMMANDS:
+    generate       Generate foreign language bindings
+    help           Print this message or the help of the given subcommand(s)
+    print-json     Print the JSON representation of the interface from a dynamic library
+    scaffolding    Generate Rust scaffolding code
+</code></pre>
+<p>Let us generate rust scaffolding and check the output:</p>
+<pre><code class="language-bash">cargo run --bin mobile -- \
+	scaffolding ./glue/mobile/src/exa.udl \
+	-o ./target/bindings
+</code></pre>
+<p>This will generate <code>exa.uniffi.rs</code> inside <code>target/bindings</code>.</p>
+<p>If you open the file and scroll down, you should see our <code>init_logger</code>,
+but not precisely as we anticipate it.</p>
+<blockquote>
+<p>It has the form of <code>&lt;namespace&gt;-&lt;hash&gt;-&lt;function name&gt;</code> to avoid collisions.</p>
+</blockquote>
+<p>For me, it was generated like this:</p>
+<pre><code class="language-rust">#[doc(hidden)]
+#[no_mangle]
+#[allow(clippy::let_unit_value)]
+pub extern &quot;C&quot; fn r#exa_5e46_init_logger(
+    call_status: &amp;mut uniffi::RustCallStatus
+) {
+    uniffi::deps::log::debug!(&quot;exa_5e46_init_logger&quot;);
+
+    uniffi::call_with_output(call_status, || {
+        #[allow(clippy::redundant_closure)]
+        r#init_logger()
+    })
+}</code></pre>
+<p>Let us generate Kotlin bindings and check the output</p>
+<pre><code class="language-bash">cargo run --bin mobile -- \
+	generate ./glue/mobile/src/exa.udl \
+	-l kotlin \
+	-o ./target/bindings
+</code></pre>
+<p>The output should be <code>target/bindings/uniffi/exa/exa.kt</code></p>
+<p>Again, scroll down and check the <code>initLogger</code> function:</p>
+<pre><code class="language-kotlin">fun `initLogger`() =
+    rustCall() { _status -&gt;
+        _UniFFILib.INSTANCE.exa_5e46_init_logger(_status)
+    }
+</code></pre>
+<blockquote>
+<p>Notice the function name is escaped using the backticks <code>`initLogger`</code>.
+So our functions doesn't collide with a language keyword.
+For example: we can have a function named <code>switch</code> to
+switch between two things. It's fine for Kotlin and Rust
+but Swift will start throwing errors. So we should escape the name.</p>
+</blockquote>
+<p>This calls another function called <code>exa_5e46_init_logger</code> inside this file.</p>
+<p>As you noticed, both the rust scaffolding and the Kotlin bindings
+have the hash <code>5e46</code> in my case.</p>
+<p>We can also do the same for Swift:</p>
+<pre><code class="language-bash">cargo run --bin mobile -- \
+	generate ./glue/mobile/src/exa.udl \
+	-l swift \
+	-o ./target/bindings
+</code></pre>
+<p>The output is pretty similar to the Kotlin one:</p>
+<pre><code class="language-swift">public func `initLogger`()  {
+    try! rustCall() {
+        exa_5e46_init_logger($0)
+    }
+}
+</code></pre>
+<blockquote>
+<p>Don't expect the output to be formatted like this,
+I manually formatted that for the sake of have a
+good looking code inside the book 😅</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../core/setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../core/setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+        <!-- Google Analytics Tag -->
+        <script type="text/javascript">
+            var localAddrs = ["localhost", "127.0.0.1", ""];
+
+            // make sure we don't activate google analytics if the developer is
+            // inspecting the book locally...
+            if (localAddrs.indexOf(document.location.hostname) === -1) {
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'G-M9GYS9Z1XC', 'auto');
+                ga('send', 'pageview');
+            }
+        </script>
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

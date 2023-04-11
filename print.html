@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">2.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="core/setup.html"><strong aria-hidden="true">3.</strong> Setup</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">2.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="core/setup.html"><strong aria-hidden="true">3.</strong> Setup</a></li><li class="chapter-item expanded "><a href="core/uniffi-setup.html"><strong aria-hidden="true">4.</strong> Uniffi Setup</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -243,6 +243,237 @@ members = [
 </code></pre>
 <p>Final project structure:</p>
 <p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXMtYXNjaWkiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBjb250ZW50U3R5bGVUeXBlPSJ0ZXh0L2NzcyIgaGVpZ2h0PSIyMDdweCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSIgc3R5bGU9IndpZHRoOjExOHB4O2hlaWdodDoyMDdweDtiYWNrZ3JvdW5kOiNGRkZGRkY7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMTggMjA3IiB3aWR0aD0iMTE4cHgiIHpvb21BbmRQYW49Im1hZ25pZnkiPjxkZWZzLz48Zz48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2NSIgeD0iMTYiIHk9IjE3LjEzODciPmV4YS1saWJyYXJ5PC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU3IiB4PSIyNiIgeT0iMzEuMTA3NCI+LmdpdGlnbm9yZTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI2NCIgeD0iMjYiIHk9IjQ1LjA3NjIiPkNhcmdvLmxvY2s8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjI2IiB5PSI1OS4wNDQ5Ij5DYXJnby50b21sPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjU2IiB4PSIyNiIgeT0iNzMuMDEzNyI+ZXhhX2NvcmU8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjM2IiB5PSI4Ni45ODI0Ij5DYXJnby50b21sPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjE5IiB4PSIzNiIgeT0iMTAwLjk1MTIiPnNyYzwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIyOSIgeD0iNDYiIHk9IjExNC45MTk5Ij5saWIucnM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjYiIHg9IjI2IiB5PSIxMjguODg4NyI+Z2x1ZTwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSI0MSIgeD0iMzYiIHk9IjE0Mi44NTc0Ij5tb2JpbGU8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iNjUiIHg9IjQ2IiB5PSIxNTYuODI2MiI+Q2FyZ28udG9tbDwvdGV4dD48dGV4dCBmaWxsPSIjMDAwMDAwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgbGVuZ3RoQWRqdXN0PSJzcGFjaW5nIiB0ZXh0TGVuZ3RoPSIxOSIgeD0iNDYiIHk9IjE3MC43OTQ5Ij5zcmM8L3RleHQ+PHRleHQgZmlsbD0iIzAwMDAwMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGxlbmd0aEFkanVzdD0ic3BhY2luZyIgdGV4dExlbmd0aD0iMjkiIHg9IjU2IiB5PSIxODQuNzYzNyI+bGliLnJzPC90ZXh0Pjx0ZXh0IGZpbGw9IiMwMDAwMDAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBsZW5ndGhBZGp1c3Q9InNwYWNpbmciIHRleHRMZW5ndGg9IjQwIiB4PSIyNiIgeT0iMTk4LjczMjQiPnRhcmdldC88L3RleHQ+PHJlY3QgZmlsbD0ibm9uZSIgaGVpZ2h0PSIyIiBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHdpZHRoPSIyIiB4PSI5IiB5PSIxMS45ODQ0Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSIyNi45NTMxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxOCIgeTE9IjI2Ljk1MzEiIHkyPSIyNi45NTMxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSI0MC45MjE5Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxOCIgeTE9IjQwLjkyMTkiIHkyPSI0MC45MjE5Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSI1NC44OTA2Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxOCIgeTE9IjU0Ljg5MDYiIHkyPSI1NC44OTA2Ii8+PHJlY3QgZmlsbD0ibm9uZSIgaGVpZ2h0PSIyIiBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHdpZHRoPSIyIiB4PSIxOSIgeT0iNjcuODU5NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTAiIHkxPSIxNC45ODQ0IiB5Mj0iNjguODU5NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTgiIHkxPSI2OC44NTk0IiB5Mj0iNjguODU5NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjIwIiB4Mj0iMjAiIHkxPSI3MC44NTk0IiB5Mj0iODIuODI4MSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjIwIiB4Mj0iMjgiIHkxPSI4Mi44MjgxIiB5Mj0iODIuODI4MSIvPjxyZWN0IGZpbGw9Im5vbmUiIGhlaWdodD0iMiIgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB3aWR0aD0iMiIgeD0iMjkiIHk9Ijk1Ljc5NjkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyMCIgeDI9IjIwIiB5MT0iNzAuODU5NCIgeTI9Ijk2Ljc5NjkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyMCIgeDI9IjI4IiB5MT0iOTYuNzk2OSIgeTI9Ijk2Ljc5NjkiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIzMCIgeDI9IjMwIiB5MT0iOTguNzk2OSIgeTI9IjExMC43NjU2Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzAiIHgyPSIzOCIgeTE9IjExMC43NjU2IiB5Mj0iMTEwLjc2NTYiLz48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjIiIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgd2lkdGg9IjIiIHg9IjE5IiB5PSIxMjMuNzM0NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTAiIHkxPSIxNC45ODQ0IiB5Mj0iMTI0LjczNDQiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIxMCIgeDI9IjE4IiB5MT0iMTI0LjczNDQiIHkyPSIxMjQuNzM0NCIvPjxyZWN0IGZpbGw9Im5vbmUiIGhlaWdodD0iMiIgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB3aWR0aD0iMiIgeD0iMjkiIHk9IjEzNy43MDMxIi8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMjAiIHgyPSIyMCIgeTE9IjEyNi43MzQ0IiB5Mj0iMTM4LjcwMzEiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSIyMCIgeDI9IjI4IiB5MT0iMTM4LjcwMzEiIHkyPSIxMzguNzAzMSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMwIiB4Mj0iMzAiIHkxPSIxNDAuNzAzMSIgeTI9IjE1Mi42NzE5Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzAiIHgyPSIzOCIgeTE9IjE1Mi42NzE5IiB5Mj0iMTUyLjY3MTkiLz48cmVjdCBmaWxsPSJub25lIiBoZWlnaHQ9IjIiIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgd2lkdGg9IjIiIHg9IjM5IiB5PSIxNjUuNjQwNiIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjMwIiB4Mj0iMzAiIHkxPSIxNDAuNzAzMSIgeTI9IjE2Ni42NDA2Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMzAiIHgyPSIzOCIgeTE9IjE2Ni42NDA2IiB5Mj0iMTY2LjY0MDYiLz48bGluZSBzdHlsZT0ic3Ryb2tlOiM4ODg4ODg7c3Ryb2tlLXdpZHRoOjEuMDsiIHgxPSI0MCIgeDI9IjQwIiB5MT0iMTY4LjY0MDYiIHkyPSIxODAuNjA5NCIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjQwIiB4Mj0iNDgiIHkxPSIxODAuNjA5NCIgeTI9IjE4MC42MDk0Ii8+PGxpbmUgc3R5bGU9InN0cm9rZTojODg4ODg4O3N0cm9rZS13aWR0aDoxLjA7IiB4MT0iMTAiIHgyPSIxMCIgeTE9IjE0Ljk4NDQiIHkyPSIxOTQuNTc4MSIvPjxsaW5lIHN0eWxlPSJzdHJva2U6Izg4ODg4ODtzdHJva2Utd2lkdGg6MS4wOyIgeDE9IjEwIiB4Mj0iMTgiIHkxPSIxOTQuNTc4MSIgeTI9IjE5NC41NzgxIi8+PCEtLVNSQz1bVlA1RlJ5OG0zQ05sLUhHLVdYM1RPMUVRRUE0bmpXYkgyUXNLd3ZJTUI4ZjhSUEl1UjBabnRIVkFkcUQ3dnFpS192eHpka0lIUC1kT0l5allCbzNLVmI0em4tZzAtZjVUUXA4ZHRVeFFoS1c3OGN0T1EySWR3Y0dpZFFSOEtody1KUFdBTW9WMXczRWx4cGdubmg0QnpZeF9xcC1wM2VKcWFWRHJFc3RCc3JPNVBTUWd2ZE5fSEJiZ2NsOVMxNHNYbVk2cXVoa2dWSDA3Q0xBdWdXdVp2Yk9ZZl80Q2ppZnZHbVl6ZzdfVlZ1VzZjTUJQUXdNdUhsZjZvQWRPWEZKMGZiMWpxTmdScHkxSndOODVBLUZQY1FwYUNEbU1LeGNMeTU3WUtKVTR1dy1yWURrR0oydkRjRTNNRUM5MjhPbGZDWnc5dTlxdXNIMU51aTVaenphbTlDZzVKQjJDbk9sd2FnTmJDOWhKb2cwVUdoZnV4Snc5Y0tIVElYc0M1OGVuMUdFdDJvcHYxRzAwXS0tPjwvZz48L3N2Zz4=" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="uniffi-setup"><a class="header" href="#uniffi-setup">Uniffi Setup</a></h1>
+<p>We are going to use <code>uniffi</code> to generate Swift and Kotlin bindings. Then,
+we will add a logger initializer and see the generating bindings.</p>
+<p>These are only language bindings. Building and linking to the native library
+will come later.</p>
+<p>With uniffi, we can write interface definitions inside the <code>.udl</code> file
+(uniffi definition language), and uniffi can grab the <code>.udl</code> file and generate
+language bindings depending on the interface definitions we provide.</p>
+<h2 id="lib-setup"><a class="header" href="#lib-setup">Lib Setup</a></h2>
+<p>Let us start by adding library configuration inside <code>glue/mobile/Cargo.toml</code>
+add the following:</p>
+<pre><code class="language-toml [hl 6-8]">[package]
+name = &quot;mobile&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[lib]
+name = &quot;exa&quot;
+crate-type = [&quot;staticlib&quot;, &quot;cdylib&quot;]
+
+[dependencies]
+</code></pre>
+<p>The <code>name</code> will be our generated library name. It has the form of <code>lib&lt;name&gt;</code>.
+We made the crate type <code>staticlib</code> to generate <code>lib&lt;name&gt;.a</code> files and use them
+for iOS targets, and <code>cdylib</code> are for generating <code>lib&lt;name&gt;.so</code> and use it for
+our Android targets.</p>
+<h2 id="adding-uniffi"><a class="header" href="#adding-uniffi">Adding Uniffi</a></h2>
+<p>We should add uniffi as a build, bin, and library dependency,
+but each has a different feature.</p>
+<blockquote>
+<p>TBH, I could not figure out how to have three different dependencies in
+<code>Cargo.toml</code>, so I combined the features needed for bin and lib dependencies u
+nder <code>[dependencies]</code></p>
+</blockquote>
+<p>Inside <code>glue/mobile/Cargo.toml</code></p>
+<pre><code class="language-toml [hl 10-14]">[package]
+name = &quot;mobile&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[lib]
+name = &quot;exa&quot;
+crate-type = [&quot;staticlib&quot;, &quot;cdylib&quot;]
+
+[dependencies]
+uniffi = { version = &quot;0.23.0&quot;, features = [&quot;cli&quot;] }
+
+[build-dependencies]
+uniffi = { version = &quot;0.23.0&quot;, features = [&quot;build&quot;] }
+</code></pre>
+<p>Let us start with generating the bindings function. Create in our mobile crate
+<code>main.rs</code> and add the generating function:</p>
+<pre><code class="language-rust">fn main() {
+    uniffi::uniffi_bindgen_main();
+}</code></pre>
+<p>Now to our library, remove all the content of <code>lib.rs</code> in our
+mobile crate and include the scaffold rust file generated by uniffi
+(not generated yet. We are going to do so in <code>build.rs</code>)</p>
+<pre><code class="language-rust">uniffi::include_scaffolding!(&quot;exa&quot;);</code></pre>
+<p>And finally, create a <code>build.rs</code> file inside the mobile crate but outside the src.</p>
+<pre><code class="language-rust">fn main() {
+    uniffi::generate_scaffolding(&quot;./src/exa.udl&quot;).unwrap();
+}</code></pre>
+<p>In <code>build.rs</code>, we want to generate a scaffolding from a file
+called <code>exa.udl</code> inside <code>src</code>.</p>
+<p>You might see errors if your editor builds on save since the file <code>exa.udl</code>
+still needs to be created. Let us create it in the mobile crate inside the <code>src</code></p>
+<pre><code class="language-cpp">namespace exa { };
+</code></pre>
+<p>Now the errors should be gone. And we can generate bindings, but wait,
+let us add a simple functionality and then generate the bindings
+to see if all is good.</p>
+<h2 id="adding-logger"><a class="header" href="#adding-logger">Adding Logger</a></h2>
+<p>On Android, we log using <code>logcat</code>. On iOS, we log to <code>stdout</code>, so for Android,
+we can use <code>android_logger</code>, and for iOS, we can use <code>simple_logger</code></p>
+<p>For better optimizations, we can have conditional dependencies,
+add <code>android_logger</code> if the target operating system is Android, else use <code>simple_logger</code></p>
+<pre><code class="language-toml [hl 11 12 15-19]">[package]
+name = &quot;mobile&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[lib]
+name = &quot;exa&quot;
+crate-type = [&quot;staticlib&quot;, &quot;cdylib&quot;]
+
+[dependencies]
+log = &quot;0.4.17&quot;
+log-panics = &quot;2.1.0&quot;
+uniffi = { version = &quot;0.23.0&quot;, features = [&quot;cli&quot;] }
+
+[target.'cfg(target_os=&quot;android&quot;)'.dependencies]
+android_logger = &quot;0.13.1&quot;
+
+[target.'cfg(not(target_os=&quot;android&quot;))'.dependencies]
+simple_logger = &quot;4.0.0&quot;
+
+[build-dependencies]
+uniffi = { version = &quot;0.23.0&quot;, features = [&quot;build&quot;] }
+</code></pre>
+<p>Now create <code>logger.rs</code> in <code>src</code> in our mobile crate.</p>
+<p>We want to use <code>android_logger to initialize the logger</code> if the target OS is
+Android. We can create a configuration block and check the <code>target_os</code></p>
+<pre><code class="language-rust">use log::{info, LevelFilter};
+
+pub fn init_logger() {
+    #[cfg(target_os = &quot;android&quot;)]
+    {
+        android_logger::init_once(
+            android_logger::Config::default()
+                .with_max_level(LevelFilter::Trace)
+                .with_tag(&quot;Exa&quot;),
+        );
+        info!(&quot;Logger initialized&quot;);
+    }
+
+    #[cfg(not(target_os = &quot;android&quot;))]
+    {
+        let logger = simple_logger::SimpleLogger::new()
+            .with_level(LevelFilter::Trace)
+            .with_colors(false)
+            .init();
+
+        match logger {
+            Ok(()) =&gt; info!(&quot;Logger initialized&quot;),
+            Err(_) =&gt; { },
+        };
+    }
+
+    log_panics::init();
+}</code></pre>
+<p>Now add that as a module inside <code>lib.rs</code></p>
+<pre><code class="language-rust [hl 1-3]">mod logger;
+
+use crate::logger::*;
+
+uniffi::include_scaffolding!(&quot;exa&quot;);</code></pre>
+<p>And finally, add the function signature to <code>exa.udl</code> so we can generate the bindings!</p>
+<pre><code class="language-cpp [hl 2]">namespace exa {
+    void init_logger();
+};
+</code></pre>
+<h2 id="generating-the-bindings"><a class="header" href="#generating-the-bindings">Generating the bindings</a></h2>
+<p>We want to execute the <code>main.rs</code> function inside the mobile
+crate to generate the bindings.</p>
+<p>To do so, open the terminal and change the directory to the root project
+(<code>exa-library</code>). From there, we run <code>cargo run</code> and pick the binary we want to run.</p>
+<pre><code class="language-bash">cargo run --bin mobile -- --help
+</code></pre>
+<p>You should be able to see the help message:</p>
+<pre><code class="language-text">Scaffolding and bindings generator for Rust
+
+USAGE:
+    mobile &lt;SUBCOMMAND&gt;
+
+OPTIONS:
+    -h, --help       Print help information
+    -V, --version    Print version information
+
+SUBCOMMANDS:
+    generate       Generate foreign language bindings
+    help           Print this message or the help of the given subcommand(s)
+    print-json     Print the JSON representation of the interface from a dynamic library
+    scaffolding    Generate Rust scaffolding code
+</code></pre>
+<p>Let us generate rust scaffolding and check the output:</p>
+<pre><code class="language-bash">cargo run --bin mobile -- \
+	scaffolding ./glue/mobile/src/exa.udl \
+	-o ./target/bindings
+</code></pre>
+<p>This will generate <code>exa.uniffi.rs</code> inside <code>target/bindings</code>.</p>
+<p>If you open the file and scroll down, you should see our <code>init_logger</code>,
+but not precisely as we anticipate it.</p>
+<blockquote>
+<p>It has the form of <code>&lt;namespace&gt;-&lt;hash&gt;-&lt;function name&gt;</code> to avoid collisions.</p>
+</blockquote>
+<p>For me, it was generated like this:</p>
+<pre><code class="language-rust">#[doc(hidden)]
+#[no_mangle]
+#[allow(clippy::let_unit_value)]
+pub extern &quot;C&quot; fn r#exa_5e46_init_logger(
+    call_status: &amp;mut uniffi::RustCallStatus
+) {
+    uniffi::deps::log::debug!(&quot;exa_5e46_init_logger&quot;);
+
+    uniffi::call_with_output(call_status, || {
+        #[allow(clippy::redundant_closure)]
+        r#init_logger()
+    })
+}</code></pre>
+<p>Let us generate Kotlin bindings and check the output</p>
+<pre><code class="language-bash">cargo run --bin mobile -- \
+	generate ./glue/mobile/src/exa.udl \
+	-l kotlin \
+	-o ./target/bindings
+</code></pre>
+<p>The output should be <code>target/bindings/uniffi/exa/exa.kt</code></p>
+<p>Again, scroll down and check the <code>initLogger</code> function:</p>
+<pre><code class="language-kotlin">fun `initLogger`() =
+    rustCall() { _status -&gt;
+        _UniFFILib.INSTANCE.exa_5e46_init_logger(_status)
+    }
+</code></pre>
+<blockquote>
+<p>Notice the function name is escaped using the backticks <code>`initLogger`</code>.
+So our functions doesn't collide with a language keyword.
+For example: we can have a function named <code>switch</code> to
+switch between two things. It's fine for Kotlin and Rust
+but Swift will start throwing errors. So we should escape the name.</p>
+</blockquote>
+<p>This calls another function called <code>exa_5e46_init_logger</code> inside this file.</p>
+<p>As you noticed, both the rust scaffolding and the Kotlin bindings
+have the hash <code>5e46</code> in my case.</p>
+<p>We can also do the same for Swift:</p>
+<pre><code class="language-bash">cargo run --bin mobile -- \
+	generate ./glue/mobile/src/exa.udl \
+	-l swift \
+	-o ./target/bindings
+</code></pre>
+<p>The output is pretty similar to the Kotlin one:</p>
+<pre><code class="language-swift">public func `initLogger`()  {
+    try! rustCall() {
+        exa_5e46_init_logger($0)
+    }
+}
+</code></pre>
+<blockquote>
+<p>Don't expect the output to be formatted like this,
+I manually formatted that for the sake of have a
+good looking code inside the book 😅</p>
+</blockquote>
 
                     </main>
 
